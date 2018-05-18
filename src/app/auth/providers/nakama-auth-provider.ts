@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable, from, of as observableOf, observable, Observer } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { NbAbstractAuthProvider } from '@nebular/auth/providers/abstract-auth.provider';
@@ -10,6 +10,8 @@ import { NbAuthResult } from '@nebular/auth/services/auth-result';
 import { Client } from '@heroiclabs/nakama-js';
 import { NakamaClientService } from '../../nakama-client.service';
 import { Session } from 'selenium-webdriver';
+import { nbThemeOptionsToken } from '@nebular/theme';
+import 'rxjs/add/observable/fromPromise';
 
 @Injectable({
     providedIn: 'root'
@@ -26,30 +28,31 @@ export class NakamaAuthProvider extends NbAbstractAuthProvider {
 
     public authenticate(data?: any): Observable<NbAuthResult> {
 
-        this.nakamaService.restoreSessionOrAuthenticate(data.email, data.password).then((session) => {
-            return observableOf(this.createSuccessResult(data));
-        }).catch(((e) => {
-            console.log("An error occured: %o", e);
-            return observableOf(this.createFailResponse(e));
-        }));
-        return observableOf(this.createSuccessResult(data));
+        var session: Promise<Session> = this.nakamaService.restoreSessionOrAuthenticate(data.email, data.password);
+
+        return Observable.create(observer => {
+            this.nakamaService.restoreSessionOrAuthenticate(data.email, data.password).then((session) => {
+                var res = JSON.stringify(session);
+                observer.next(new NbAuthResult(true, this.createSuccessResponse(session), this.getConfigValue('login.redirect.success'),
+                    ['Successfully logged in.'], this.getConfigValue('login.defaultMessages'), res));
+            }).catch(((e) => {
+                console.log("An error occured: %o", e);
+                observer.next(observableOf(this.createFailResponse(e)));
+            }));
+        });
     }
 
-    public register(data) {
-        this.nakamaService.restoreSessionOrAuthenticate(data.email, data.password).then(function (session) {
-            return this.nakamaService.client.writeStorageObjects(session.token, [{
-                "collection": "collection",
-                "key": "key1",
-                "value": { "jsonKey": "jsonValue" }
-            }]);
-        }).then(function (writeAck) {
-            console.log("Storage write was successful - ack: %o", writeAck);
-            return observableOf(this.createSuccessResult(data));
-        }).catch(function (e) {
-            console.log("An error occured: %o", e);
-            return observableOf(this.createSuccessResult(data));
+    public register(data?: any): Observable<NbAuthResult> {
+        return Observable.create(observer => {
+            this.nakamaService.restoreSessionOrAuthenticate(data.email, data.password).then((session) => {
+                var res = JSON.stringify(session);
+                observer.next(new NbAuthResult(true, this.createSuccessResponse(session), this.getConfigValue('login.redirect.success'),
+                    ['Successfully logged in.'], this.getConfigValue('login.defaultMessages'), res));
+            }).catch(((e) => {
+                console.log("An error occured: %o", e);
+                observer.next(observableOf(this.createFailResponse(e)));
+            }));
         });
-        return observableOf(this.createSuccessResult(data));
     };
     public requestPassword(data) {
         return observableOf(this.createDummyResult(data))
@@ -86,4 +89,8 @@ export class NakamaAuthProvider extends NbAbstractAuthProvider {
         console.log("Fail Result:- " + data);
         return new NbAuthResult(false, this.createFailResponse(data), null, ['Something went wrong.']);
     }
+
+    public createSuccessResponse(data) {
+        return new HttpResponse({ body: { data }, status: 200 });
+    };
 }
