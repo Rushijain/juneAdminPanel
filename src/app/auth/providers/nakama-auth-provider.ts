@@ -11,7 +11,8 @@ import { Client } from '@heroiclabs/nakama-js';
 import { NakamaClientService } from '../../nakama-client.service';
 import { Session } from 'selenium-webdriver';
 import { nbThemeOptionsToken } from '@nebular/theme';
-import 'rxjs/add/observable/fromPromise';
+// import 'rxjs/add/observable/fromPromise';
+import { NbTokenService } from '@nebular/auth/services/token/token.service';
 
 @Injectable({
     providedIn: 'root'
@@ -20,24 +21,28 @@ export class NakamaAuthProvider extends NbAbstractAuthProvider {
 
     public nakamaService: NakamaClientService;
     public _session: Session;
+    public tokenService: NbTokenService;
 
-    constructor(nk: NakamaClientService) {
+    constructor(nk: NakamaClientService, ts: NbTokenService) {
         super();
-        this.nakamaService = nk
+        this.nakamaService = nk;
+        this.tokenService = ts;
     }
 
     public authenticate(data?: any): Observable<NbAuthResult> {
 
-        var session: Promise<Session> = this.nakamaService.restoreSessionOrAuthenticate(data.email, data.password);
-
         return Observable.create(observer => {
             this.nakamaService.restoreSessionOrAuthenticate(data.email, data.password).then((session) => {
-                var res = JSON.stringify(session);
-                observer.next(new NbAuthResult(true, this.createSuccessResponse(session), this.getConfigValue('login.redirect.success'),
-                    ['Successfully logged in.'], this.getConfigValue('login.defaultMessages'), res));
+                if (session != null) {
+                    var res = JSON.stringify(session);
+                    observer.next(new NbAuthResult(true, this.createSuccessResponse(session), this.getConfigValue('login.redirect.success'),
+                        ['Successfully logged in.'], this.getConfigValue('login.defaultMessages'), res));
+                } else {
+                    observer.next(this.createFailResult(session));
+                }
             }).catch(((e) => {
                 console.log("An error occured: %o", e);
-                observer.next(observableOf(this.createFailResponse(e)));
+                observer.next(this.createFailResult(e));
             }));
         });
     }
@@ -50,7 +55,7 @@ export class NakamaAuthProvider extends NbAbstractAuthProvider {
                     ['Successfully logged in.'], this.getConfigValue('login.defaultMessages'), res));
             }).catch(((e) => {
                 console.log("An error occured: %o", e);
-                observer.next(observableOf(this.createFailResponse(e)));
+                observer.next(observableOf(this.createFailResult(e)));
             }));
         });
     };
@@ -63,8 +68,9 @@ export class NakamaAuthProvider extends NbAbstractAuthProvider {
             .pipe(delay(this.getConfigValue('delay')));
     };
     public logout() {
-        return observableOf(this.createDummyResult(null))
-            .pipe(delay(this.getConfigValue('delay')));
+        return Observable.create(observer => {
+            observer.next(new NbAuthResult(true, '', this.getConfigValue('logout.redirect.success'), [], this.getConfigValue('logout.defaultMessages')));
+        });
     };
     public refreshToken() {
         return observableOf(this.createDummyResult("test"))
@@ -87,7 +93,8 @@ export class NakamaAuthProvider extends NbAbstractAuthProvider {
 
     public createFailResult(data) {
         console.log("Fail Result:- " + data);
-        return new NbAuthResult(false, this.createFailResponse(data), null, ['Something went wrong.']);
+        // new NbAuthResult(false, data, this.getConfigValue('resetPass.redirect.failure'), ['Something went wrong.']);
+        return new NbAuthResult(false, data, this.getConfigValue('resetPass.redirect.failure'), this.getConfigValue('login.defaultErrors'));
     }
 
     public createSuccessResponse(data) {

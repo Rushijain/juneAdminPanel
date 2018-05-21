@@ -37,11 +37,11 @@ import { NakamaAuthProvider1 } from './auth/providers/nakama-auth-provider1';
         email: {
           service: NakamaAuthProvider,
           config: {
-            baseEndpoint: 'http://127.0.0.1:7350',
+            baseEndpoint: 'http://192.168.6.15:8989',
             login: {
               alwaysFail: false,
               rememberMe: true,
-              endpoint: '/v2/account/authenticate/email?create=false',
+              endpoint: '/v2/account/authenticate/email',
               method: 'post',
               redirect: {
                 success: '/',
@@ -68,7 +68,7 @@ import { NakamaAuthProvider1 } from './auth/providers/nakama-auth-provider1';
               method: 'delete',
               redirect: {
                 success: '/',
-                failure: null,
+                failure: '/',
               },
               defaultErrors: ['Something went wrong, please try again.'],
               defaultMessages: ['You have been successfully logged out.'],

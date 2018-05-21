@@ -29,7 +29,6 @@ export class NakamaClientService {
         }
       } else {
         session = await this.client.authenticateEmail({ email: email, password: password });
-        this.storeSession(session);
 
       }
       console.log("Authenticated successfully. User ID: %o", session.user_id);
@@ -39,10 +38,5 @@ export class NakamaClientService {
       console.log("An error occured while trying to restore session or authenticate user: %o", e)
     }
     return session;
-  }
-
-  public storeSession(session) {
-    console.log("session:" + session)
-    //TODO
   }
 }
