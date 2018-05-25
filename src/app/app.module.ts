@@ -19,7 +19,6 @@ import { getDeepFromObject } from '@nebular/auth/helpers';
 import { NakamaClientService } from './nakama-client.service';
 import { NB_AUTH_TOKEN_CLASS, NbAuthJWTToken } from '@nebular/auth';
 import { AuthGuard } from './auth-guard.service';
-import { NakamaAuthProvider1 } from './auth/providers/nakama-auth-provider1';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +36,7 @@ import { NakamaAuthProvider1 } from './auth/providers/nakama-auth-provider1';
         email: {
           service: NakamaAuthProvider,
           config: {
-            baseEndpoint: 'http://192.168.6.15:8989',
+            baseEndpoint: 'http://127.0.0.1:7350',
             login: {
               alwaysFail: false,
               rememberMe: true,

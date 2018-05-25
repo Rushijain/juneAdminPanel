@@ -8,28 +8,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'FEATURES',
+    title: 'Components',
     group: true,
   },
   {
-    title: 'Auth',
-    icon: 'nb-locked',
+    title: 'Main Panel',
+    icon: 'nb-grid-a',
     children: [
       {
-        title: 'Login',
-        link: '/auth/login',
-      },
-      {
-        title: 'Register',
-        link: '/auth/register',
-      },
-      {
-        title: 'Request Password',
-        link: '/auth/request-password',
-      },
-      {
-        title: 'Reset Password',
-        link: '/auth/reset-password',
+        title: 'Items',
+        link: '/pages/items',
       },
     ],
   },

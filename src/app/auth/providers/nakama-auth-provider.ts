@@ -11,7 +11,6 @@ import { Client } from '@heroiclabs/nakama-js';
 import { NakamaClientService } from '../../nakama-client.service';
 import { Session } from 'selenium-webdriver';
 import { nbThemeOptionsToken } from '@nebular/theme';
-// import 'rxjs/add/observable/fromPromise';
 import { NbTokenService } from '@nebular/auth/services/token/token.service';
 
 @Injectable({
