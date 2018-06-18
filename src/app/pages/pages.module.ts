@@ -6,6 +6,8 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { ItemsComponent } from './items/items.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { SmartTableService } from '../@core/data/smart-table.service';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -17,10 +19,14 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     MiscellaneousModule,
+    Ng2SmartTableModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,
     ItemsComponent,
+  ],
+  providers: [
+    SmartTableService,
   ],
 })
 export class PagesModule {

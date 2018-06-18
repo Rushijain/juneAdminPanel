@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     private menuService: NbMenuService,
     private userService: UserService,
     private analyticsService: AnalyticsService,
-    private authService: NbAuthService) {// TODO
+    private authService: NbAuthService) {
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
 
@@ -33,9 +33,11 @@ export class HeaderComponent implements OnInit {
         }
 
       });
+      this.sidebarService.collapse('menu-sidebar');
   }
 
   ngOnInit() {
+    
     this.userService.getUsers()
       .subscribe((users: any) => this.user = users.nick);
   }

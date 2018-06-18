@@ -19,8 +19,12 @@ const routes: Routes = [{
       pathMatch: 'full',
     },
     {
-      path:'items',
-      component:ItemsComponent,
+      path: 'tables',
+      loadChildren: './tables/tables.module#TablesModule',
+    },
+    {
+      path: 'items',
+      component: ItemsComponent,
     }
   ],
 }];

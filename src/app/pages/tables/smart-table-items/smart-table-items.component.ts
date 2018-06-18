@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { SmartTableService } from '../../@core/data/smart-table.service';
+import { SmartTableService } from '../../../@core/data/smart-table.service';
 
 @Component({
-  selector: 'items',
-  templateUrl: './items.component.html'
+  selector: 'ngx-smart-table',
+  templateUrl: './smart-table-items.component.html',
+  styles: [`
+    nb-card {
+      transform: translate3d(0, 0, 0);
+    }
+  `],
 })
-export class ItemsComponent implements OnInit {
-
-  ngOnInit() {
-  }
-
-
+export class SmartTableItemsComponent {
 
   settings = {
     add: {
@@ -34,48 +34,24 @@ export class ItemsComponent implements OnInit {
         title: 'ID',
         type: 'number',
       },
-      itemname: {
-        title: 'Item Name',
+      firstName: {
+        title: 'First Name',
         type: 'string',
       },
-      description: {
-        title: 'Description',
+      lastName: {
+        title: 'Last Name',
         type: 'string',
       },
-      tier: {
-        title: 'Tier',
+      username: {
+        title: 'Username',
         type: 'string',
       },
-      energyrequired: {
-        title: 'Energy Required',
-        type: 'number',
+      email: {
+        title: 'E-mail',
+        type: 'string',
       },
-      effectduration: {
-        title: 'Energy Duration',
-        type: 'number',
-      },
-      areaofeffect: {
-        title: 'Area of effect',
-        type: 'number',
-      },
-      cooldowntime: {
-        title: 'Cooldown Time',
-        type: 'number',
-      },
-      attack: {
-        title: 'Attack',
-        type: 'number',
-      },
-      defense: {
-        title: 'Defense',
-        type: 'number',
-      },
-      physical: {
-        title: 'Physical',
-        type: 'number',
-      },
-      mental: {
-        title: 'Mental',
+      age: {
+        title: 'Age',
         type: 'number',
       },
     },
@@ -95,5 +71,4 @@ export class ItemsComponent implements OnInit {
       event.confirm.reject();
     }
   }
-
 }

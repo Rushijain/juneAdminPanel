@@ -12,13 +12,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'Main Panel',
+    title: 'Items',
     icon: 'nb-grid-a',
-    children: [
-      {
-        title: 'Items',
-        link: '/pages/items',
-      },
-    ],
+    link: '/pages/items',
   },
 ];

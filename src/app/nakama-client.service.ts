@@ -12,7 +12,7 @@ export class NakamaClientService {
   currentSession = null;
 
   constructor() {
-    this.client = new Nakama.Client("defaultkey", "127.0.0.1", "7350");
+    this.client = new Nakama.Client("gsg@123#", "127.0.0.1", "7350");
   }
 
   public async restoreSessionOrAuthenticate(email: string, password: string): Promise<any> {
