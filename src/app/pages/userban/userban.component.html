@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header class="centertext increased_text_size">User Banning</nb-card-header>
+  <nb-layout center>
+    <nb-layout-column class="colored-column-warning centertext">
+      <p>{{response}}</p>
+      <!-- <small [class.invalid]="id.valid || id.untouched ">Username or id required</small><br> -->
+      <input type="text" name="id" required #id="ngModel" class="padding" shape="round" [(ngModel)] = "user_id" nbInput fullWidth [status]="id.valid || id.untouched ? 'info' : 'danger'" placeholder="ID">
+      <p class="padding_top">OR {{response}}</p>
+      <input type="text" name="name" required #name="ngModel" class="padding" shape="round" [(ngModel)] = "user_name" nbInput fullWidth [status]="id.valid || id.untouched ? 'info' : 'danger'" placeholder="NAME">   <br>   
+      <button class="padding_top" nbButton outline [disabled]="id.invalid" fullWidth shape="round" (click)="onsubmit()" status="success">Submit!!</button>
+    </nb-layout-column>
+  </nb-layout>
+</nb-card>

@@ -1,0 +1,91 @@
+<nb-card>
+    <nb-card-header class="centertext increased_text_size">Tournament panel</nb-card-header>
+        <nb-layout center>
+            <nb-layout-column class="colored-column-w arning">
+                <form #tournamentForm="ngForm" novalidate>
+                    <small [class.invalid]="category.valid || category.untouched ">Required field</small><br>
+                    <input type="text" name="category" required #category="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.category" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="Category">
+
+                    <small [class.invalid]="seconds.valid || seconds.untouched ">Required field</small><br>
+                    <input type="text" name="seconds" required #seconds="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.seconds" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="Seconds">
+
+                    <small [class.invalid]="entry_fees.valid || entry_fees.untouched ">Required field</small><br>
+                    <input type="text" name="entry_fees" required #entry_fees="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.entry_fees" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="Entry fees(In balon dor)">
+
+                    <small [class.invalid]="ucoins_ribbon_1.valid || ucoins_ribbon_1.untouched ">Required field</small><br>
+                    <input type="text" name="ucoins_ribbon_1" required #ucoins_ribbon_1="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.ucoins_ribbon_1" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="Coins">
+
+                    <small [class.invalid]="dor_ribbon_1.valid || dor_ribbon_1.untouched ">Required field</small><br>
+                    <input type="text" name="dor_ribbon_1" required #dor_ribbon_1="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.dor_ribbon_1" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="Ballon_dor">
+
+                    <small [class.invalid]="common_card_1_ribbon_1.valid || common_card_1_ribbon_1.untouched ">Required field</small><br>
+                    <input type="text" name="common_card_1_ribbon_1" required #common_card_1_ribbon_1="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.common_card_1_ribbon_1" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="Common card 1 count">
+
+                    <small [class.invalid]="common_card_2_ribbon_1.valid || common_card_2_ribbon_1.untouched ">Required field</small><br>
+                    <input type="text" name="common_card_2_ribbon_1" required #common_card_2_ribbon_1="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.common_card_2_ribbon_1" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="common card 2 count">
+
+                    <small [class.invalid]="rare_card_1_ribbon_1.valid || rare_card_1_ribbon_1.untouched ">Required field</small><br>
+                    <input type="text" name="rare_card_1_ribbon_1" required #rare_card_1_ribbon_1="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.rare_card_1_ribbon_1" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="Rare card 1 count">
+
+                    <small [class.invalid]="rare_card_2_ribbon_1.valid || rare_card_2_ribbon_1.untouched ">Required field</small><br>
+                    <input type="text" name="rare_card_2_ribbon_1" required #rare_card_2_ribbon_1="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.rare_card_2_ribbon_1" nbInput fullWidth [status]="category.valid || category.untouched ? 'info' : 'danger'" placeholder="Rare card 2 count">
+
+                    <small [class.invalid]="epic_card_1_ribbon_1.valid || epic_card_1_ribbon_1.untouched ">Required field</small><br>
+                    <input type="text" name="epic_card_1_ribbon_1" required #epic_card_1_ribbon_1="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.epic_card_1_ribbon_1" nbInput fullWidth [status]="epic_card_1_ribbon_1.valid || epic_card_1_ribbon_1.untouched ? 'info' : 'danger'" placeholder="Epic card 1 count">
+
+                    <small [class.invalid]="epic_card_2_ribbon_1.valid || epic_card_2_ribbon_1.untouched ">Required field</small><br>
+                    <input type="text" name="epic_card_2_ribbon_1" required #epic_card_2_ribbon_1="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.epic_card_2_ribbon_1" nbInput fullWidth [status]="epic_card_2_ribbon_1.valid || epic_card_2_ribbon_1.untouched ? 'info' : 'danger'" placeholder="Epic card 2 count">
+
+                    <small [class.invalid]="ucoins_ribbon_2.valid || ucoins_ribbon_2.untouched ">Required field</small><br>
+                    <input type="text" name="ucoins_ribbon_2" required #ucoins_ribbon_2="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.ucoins_ribbon_2" nbInput fullWidth [status]="ucoins_ribbon_2.valid || ucoins_ribbon_2.untouched ? 'info' : 'danger'" placeholder="ucoins">
+
+                    <small [class.invalid]="dor_ribbon_2.valid || dor_ribbon_2.untouched ">Required field</small><br>
+                    <input type="text" name="dor_ribbon_2" required #dor_ribbon_2="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.dor_ribbon_2" nbInput fullWidth [status]="dor_ribbon_2.valid || dor_ribbon_2.untouched ? 'info' : 'danger'" placeholder="ballon_dor">
+
+                    <small [class.invalid]="common_card_1_ribbon_2.valid || common_card_1_ribbon_2.untouched ">Required field</small><br>
+                    <input type="text" name="common_card_1_ribbon_2" required #common_card_1_ribbon_2="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.common_card_1_ribbon_2" nbInput fullWidth [status]="common_card_1_ribbon_2.valid || common_card_1_ribbon_2.untouched ? 'info' : 'danger'" placeholder="Common card 1 count">
+
+                    <small [class.invalid]="common_card_2_ribbon_2.valid || common_card_2_ribbon_2.untouched ">Required field</small><br>
+                    <input type="text" name="common_card_2_ribbon_2" required #common_card_2_ribbon_2="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.common_card_2_ribbon_2" nbInput fullWidth [status]="common_card_2_ribbon_2.valid || common_card_2_ribbon_2.untouched ? 'info' : 'danger'" placeholder="Common card 2 count">
+
+                    <small [class.invalid]="rare_card_1_ribbon_2.valid || rare_card_1_ribbon_2.untouched ">Required field</small><br>
+                    <input type="text" name="rare_card_1_ribbon_2" required #rare_card_1_ribbon_2="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.rare_card_1_ribbon_2" nbInput fullWidth [status]="rare_card_1_ribbon_2.valid || rare_card_1_ribbon_2.untouched ? 'info' : 'danger'" placeholder="Rare card 1 count">
+
+                    <small [class.invalid]="rare_card_2_ribbon_2.valid || rare_card_2_ribbon_2.untouched ">Required field</small><br>
+                    <input type="text" name="rare_card_2_ribbon_2" required #rare_card_2_ribbon_2="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.rare_card_2_ribbon_2" nbInput fullWidth [status]="rare_card_2_ribbon_2.valid || rare_card_2_ribbon_2.untouched ? 'info' : 'danger'" placeholder="Rare card count 2">
+
+                    <small [class.invalid]="epic_card_1_ribbon_2.valid || epic_card_1_ribbon_2.untouched ">Required field</small><br>
+                    <input type="text" name="epic_card_1_ribbon_2" required #epic_card_1_ribbon_2="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.epic_card_1_ribbon_2" nbInput fullWidth [status]="epic_card_1_ribbon_2.valid || epic_card_1_ribbon_2.untouched ? 'info' : 'danger'" placeholder="Epic card 1 count">
+
+                    <small [class.invalid]="epic_card_2_ribbon_3.valid || epic_card_2_ribbon_3.untouched ">Required field</small><br>
+                    <input type="text" name="epic_card_2_ribbon_3" required #epic_card_2_ribbon_3="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.epic_card_2_ribbon_3" nbInput fullWidth [status]="epic_card_2_ribbon_3.valid || epic_card_2_ribbon_3.untouched ? 'info' : 'danger'" placeholder="Epic card 2 count">
+
+                    <small [class.invalid]="ucoins_ribbon_4.valid || ucoins_ribbon_4.untouched ">Required field</small><br>
+                    <input type="text" name="ucoins_ribbon_4" required #ucoins_ribbon_4="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.ucoins_ribbon_4" nbInput fullWidth [status]="ucoins_ribbon_4.valid || ucoins_ribbon_4.untouched ? 'info' : 'danger'" placeholder="ucoins">
+
+                    <small [class.invalid]="dor_ribbon_4.valid || dor_ribbon_4.untouched ">Required field</small><br>
+                    <input type="text" name="dor_ribbon_4" required #dor_ribbon_4="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.dor_ribbon_4" nbInput fullWidth [status]="ucoins_ribbon_4.valid || ucoins_ribbon_4.untouched ? 'info' : 'danger'" placeholder="ballon_dor">
+
+                    <small [class.invalid]="common_card_1_ribbon_4.valid || common_card_1_ribbon_4.untouched ">Required field</small><br>
+                    <input type="text" name="common_card_1_ribbon_4" required #common_card_1_ribbon_4="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.common_card_1_ribbon_4" nbInput fullWidth [status]="common_card_1_ribbon_4.valid || common_card_1_ribbon_4.untouched ? 'info' : 'danger'" placeholder="Common card 1 count">
+
+                    <small [class.invalid]="common_card_2_ribbon_4.valid || common_card_2_ribbon_4.untouched ">Required field</small><br>
+                    <input type="text" name="common_card_2_ribbon_4" required #common_card_2_ribbon_4="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.common_card_2_ribbon_4" nbInput fullWidth [status]="common_card_2_ribbon_4.valid || common_card_2_ribbon_4.untouched ? 'info' : 'danger'" placeholder="Common card 2 count">
+
+                    <small [class.invalid]="rare_card_1_ribbon_4.valid || rare_card_1_ribbon_4.untouched ">Required field</small><br>
+                    <input type="text" name="rare_card_1_ribbon_4" required #rare_card_1_ribbon_4="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.rare_card_1_ribbon_4" nbInput fullWidth [status]="rare_card_1_ribbon_4.valid || rare_card_1_ribbon_4.untouched ? 'info' : 'danger'" placeholder="Rare card 1 count">
+
+                    <small [class.invalid]="rare_card_2_ribbon_4.valid || rare_card_2_ribbon_4.untouched ">Required field</small><br>
+                    <input type="text" name="rare_card_2_ribbon_4" required #rare_card_2_ribbon_4="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.rare_card_2_ribbon_4" nbInput fullWidth [status]="rare_card_2_ribbon_4.valid || rare_card_2_ribbon_4.untouched ? 'info' : 'danger'" placeholder="Rare card 1 count">
+
+                    <small [class.invalid]="epic_card_1_ribbon_4.valid || epic_card_1_ribbon_4.untouched ">Required field</small><br>
+                    <input type="text" name="epic_card_1_ribbon_4" required #epic_card_1_ribbon_4="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.epic_card_1_ribbon_4" nbInput fullWidth [status]="epic_card_1_ribbon_4.valid || epic_card_1_ribbon_4.untouched ? 'info' : 'danger'" placeholder="Epic card 1 count">
+
+                    <small [class.invalid]="epic_card_2_ribbon_4.valid || epic_card_2_ribbon_4.untouched ">Required field</small><br>
+                    <input type="text" name="epic_card_2_ribbon_4" required #epic_card_2_ribbon_4="ngModel" class="padding" shape="round" [(ngModel)] = "tournament.epic_card_2_ribbon_4" nbInput fullWidth [status]="epic_card_2_ribbon_4.valid || epic_card_2_ribbon_4.untouched ? 'info' : 'danger'" placeholder="Epic card 2 count">
+
+                    <button nbButton outline [disabled]="tournamentForm.form.invalid" fullWidth status="success">Submit!!</button>
+                </form>
+            </nb-layout-column>
+        </nb-layout>
+</nb-card>
