@@ -1,4 +1,6 @@
+import { NewGiftModule } from './new-gift/new-gift.module';
 import { LoginModule } from './login/login.module';
+import { MessageModule } from './message/message.module';
 import { NgModule } from '@angular/core';
 import { NbMenuModule } from '@nebular/theme';
 
@@ -18,8 +20,10 @@ import { UserbanModule } from './userban/userban.module';
     MiscellaneousModule,
     GiftsModule,
     LoginModule,
+    MessageModule,
     TournamentModule,
     UserbanModule,
+    NewGiftModule,
   ],
   declarations: [
     PagesComponent,

@@ -1,4 +1,3 @@
-import { TournamentComponent } from './tournament.component';
 import { NgModule } from '@angular/core';
 import {
   NbButtonModule,
@@ -13,7 +12,8 @@ import {
   NbLayoutModule,
 } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { MessageComponent } from './message.component';
 
 @NgModule({
   imports: [
@@ -28,13 +28,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbInputModule,
     NbLayoutModule,
     FormsModule,
-    ReactiveFormsModule,
   ],
   declarations: [
-      TournamentComponent,
+    MessageComponent,
   ],
   providers: [
   ],
 })
-
-export class TournamentModule { }
+export class MessageModule { }

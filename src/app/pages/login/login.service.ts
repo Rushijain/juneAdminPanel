@@ -2,21 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Globals } from './../globals';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-  _url = 'http://127.0.0.1:7350/v2/account/authenticate/device';
   constructor(private _http: HttpClient, private globals: Globals) {
   }
-
+  _url = this.globals._url + 'account/authenticate/device';
    Login()
   // tslint:disable-next-line: one-line
   {
+    this._url = this.globals._url + 'account/authenticate/device';
     const object = {};
     object['id'] = '01201223124523';
     // tslint:disable-next-line: no-console
     // tslint:disable-next-line: no-console
-    console.log(object);
+    console.log(this._url);
 
     let headers = new HttpHeaders();
         headers  = headers.append('Content-Type', 'application/json');

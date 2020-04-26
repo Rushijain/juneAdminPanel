@@ -19,8 +19,8 @@
   }
 
   .invalid{
-    visibility: hidden;
-    color: red;
+    visibility: visible !important;
+    color: red !important;
   }
 
   .inlineDisplay{

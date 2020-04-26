@@ -1,64 +1,44 @@
+<nb-layout>
+<nb-layout-column>
 <nb-card>
-	<nb-card-header class="centertext increased_text_size">Gift Panel</nb-card-header>
-	<nb-layout center>
-		<nb-layout-column class="colored-column-warning">
-			<form #userForm="ngForm" (ngSubmit)="onSubmit(giftModel)" novalidate>
-				<nb-card>
-					<nb-card-header class="centertext">Fill in the Details Below</nb-card-header>
-
-					<nb-card-body class = "centertext">
-
-						<small [class.invalid]="id.valid || id.untouched ">Username or id required</small><br>
-                        <input type="text" name="id" required #id="ngModel" class="padding" shape="round" [(ngModel)] = "giftModel.id" nbInput fullWidth [status]="id.valid || id.untouched ? 'info' : 'danger'" placeholder="ID">
-                        <p >OR</p>
-						<input type="text" name="name" #name="ngModel" class="" shape="round" [(ngModel)] = "giftModel.name" fullWidth nbInput status="info" placeholder="Name"><br>
-
-						<small [class.invalid]="gold.valid || gold.untouched">It's wrong</small>
-						<input type="text" name="gold" #gold="ngModel" class="" shape="round" [(ngModel)]="giftModel.gold" nbInput fullWidth status="info" placeholder="Gold"><br>
-
-						<small [class.invalid]="dor.valid || dor.untouched">It's wrong</small>
-						<input type="text" name="dor" #dor="ngModel" class="padding" [(ngModel)]="giftModel.dor" shape="round" nbInput fullWidth status="info" placeholder="Ballon_dor"><br>
-                        
-                        <input type="text" name="common_item_1" #common_item_1="ngModel" class="padding" [(ngModel)]="giftModel.common_item_1" shape="round" nbInput fullWidth status="info" placeholder="common_item_1"><br>
-
-                        <input type="text" name="common_item_2" #common_item_2="ngModel" class="padding" [(ngModel)]="giftModel.common_item_2" shape="round" nbInput fullWidth status="info" placeholder="common_item_2"><br>
-
-                        <input type="text" name="rare_item_1" #rare_item_1="ngModel" class="padding" [(ngModel)]="giftModel.rare_item_1" shape="round" nbInput fullWidth status="info" placeholder="rare_item_1"><br>
-
-                        <input type="text" name="rare_item_2" #rare_item_2="ngModel" class="padding" [(ngModel)]="giftModel.rare_item_2" shape="round" nbInput fullWidth status="info" placeholder="rare_item_2"><br>
-
-                        <input type="text" name="epic_item_1" #epic_item_1="ngModel" class="padding" [(ngModel)]="giftModel.epic_item_1" shape="round" nbInput fullWidth status="info" placeholder="epic_item_1"><br>
-
-                        <input type="text" name="epic_item_2" #epic_item_2="ngModel" class="padding" [(ngModel)]="giftModel.epic_item_2" shape="round" nbInput fullWidth status="info" placeholder="epic_item_2"><br>
-
-                        <input type="text" name="en_title" required #en_title="ngModel" class="padding" [(ngModel)]="giftModel.en_title" shape="round" nbInput fullWidth status="info"  placeholder="en_title"><br>
-
-                        <textarea type="text" name="en_message" required #en_message="ngModel" class="padding" [(ngModel)]="giftModel.en_message" shape="round" nbInput fullWidth status="info" placeholder="en_message"></textarea><br>
-
-                        <input type="text" name="sp_title" required #sp_title="ngModel" class="padding" [(ngModel)]="giftModel.sp_title" shape="round" nbInput fullWidth status="info" placeholder="sp_title"><br>
-
-                        <textarea type="text" name="sp_message" required #sp_message="ngModel" class="padding" [(ngModel)]="giftModel.sp_message" shape="round" nbInput fullWidth status="info" placeholder="sp_message"></textarea><br>
-
-                        <input type="text" name="fr_title" required #fr_title="ngModel" class="padding" [(ngModel)]="giftModel.fr_title" shape="round" nbInput fullWidth status="info" placeholder="fr_title"><br>
-
-                        <textarea type="text" name="fr_message" required #fr_message="ngModel" class="padding" [(ngModel)]="giftModel.fr_message" shape="round" nbInput fullWidth status="info" placeholder="fr_message"></textarea><br>
-
-                        <input type="text" name="it_title" required #it_title="ngModel" class="padding" [(ngModel)]="giftModel.it_title" shape="round" nbInput fullWidth status="info" placeholder="it_title"><br>
-
-                        <textarea type="text" name="it_message" required #it_message="ngModel" class="padding" [(ngModel)]="giftModel.it_message" shape="round" nbInput fullWidth status="info" placeholder="it_message"></textarea><br>
-
-                        <input type="text" name="ge_title" required #ge_title="ngModel" class="padding" [(ngModel)]="giftModel.ge_title" shape="round" nbInput fullWidth status="info" placeholder="ge_title"><br>
-
-                        <textarea type="text" name="ge_message" required #ge_message="ngModel" class="padding" [(ngModel)]="giftModel.ge_message" shape="round" nbInput fullWidth status="info" placeholder="ge_message"></textarea><br>
-
-					</nb-card-body>
-
-					<nb-card-footer class="centertext">
-						<button nbButton outline [disabled]="userForm.form.invalid" status="success">Submit!!</button>
-					</nb-card-footer>
-
-				</nb-card>
-			</form>
-		</nb-layout-column>
-	</nb-layout>
+		
+	<nb-card-header class="centertext increased_text_size">Home Panel</nb-card-header>
 </nb-card>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4 col-sm-4 col-xs-12">
+			<nb-card style="text-align: center;">
+				<nb-card-header><span class="h1"> Played in  </span></nb-card-header>
+				<nb-card-body>
+					<h1>10+ countries</h1>
+				</nb-card-body>
+			</nb-card>
+		</div>
+		<div class="col-md-4 col-sm-4 col-xs-12">
+			<nb-card style="text-align: center;">
+				<nb-card-header><span class="h1"> Ultras Downloads </span></nb-card-header>
+				<nb-card-body>
+					<h1>50k+</h1>
+				</nb-card-body>
+			</nb-card>
+		</div>
+		<div class="col-md-4 col-sm-4 col-xs-12">
+			<nb-card style="text-align: center;">
+				<nb-card-header><span class="h1"> Available on </span></nb-card-header>
+				<nb-card-body>
+					<h1>Android/IOS</h1>
+				</nb-card-body>
+			</nb-card>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+				<img src="assets/images/ultras.png" class="img-responsive" width="100%" class="img-rounded" alt="Cinque Terre">
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+</nb-layout-column>
+</nb-layout>

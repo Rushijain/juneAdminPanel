@@ -1,4 +1,3 @@
-import { TournamentComponent } from './tournament.component';
 import { NgModule } from '@angular/core';
 import {
   NbButtonModule,
@@ -14,6 +13,8 @@ import {
 } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewGiftComponent } from './new-gift.component';
+
 
 @NgModule({
   imports: [
@@ -31,10 +32,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
   declarations: [
-      TournamentComponent,
+    NewGiftComponent,
   ],
   providers: [
   ],
 })
-
-export class TournamentModule { }
+export class NewGiftModule { }

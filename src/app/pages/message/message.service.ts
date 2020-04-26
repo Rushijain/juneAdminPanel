@@ -5,11 +5,11 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UserbanService {
+export class MessageService {
   _url2 = 'http://127.0.0.1:7350/v2/rpc/user.ban';
   constructor(private _http: HttpClient, private globals: Globals) { }
 
-  BanUserService(user_id: string,name: string) {
+  messageService(user_id: string,name: string) {
     console.log('Reached into second function');
     let _url = this.globals._url + 'rpc/user.ban';
     let headers = new HttpHeaders();

@@ -1,0 +1,199 @@
+<nb-layout>
+    <nb-layout-column>
+<nb-card>
+  <nb-card-header>
+    New gift Panel
+  </nb-card-header>
+</nb-card>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-2"></div>
+    <div class="col-md-8 col-sm-8 col-xs-8 col-md-offset-3 col-xs-offset-3 col-sm-offset-3">
+      <div class="row" >
+        <div class="col-md-5 col-sm-5 col-xs-5"><hr class="new4"></div>
+        <div class="col-md-2 col-sm-2 col-xs-2" align="center"><h4>User Info</h4></div>
+        <div class="col-md-5 col-sm-5 col-xs-5"><hr class="new4"></div>
+      </div>
+      <form [formGroup] = "UserGiftForm" (ngSubmit) = "onSubmit()">
+        <div class="row">
+          <div class="col-md-5 col-sm-5 col-xs-5">
+            <label for="Id">  User Id : </label>
+            <input type="text" id="Id" name="Id" formControlName="Id" class="padding form-control" [status]="UserGiftForm.hasError('hasError') && UserGiftForm.get('Name').touched && UserGiftForm.get('Id').touched ? 'danger' : 'default'" shape="round" nbInput fullWidth placeholder="ID">
+            <div *ngIf = "UserGiftForm.get('Name').touched && UserGiftForm.get('Name').touched">
+              <small *ngIf = "UserGiftForm.hasError('hasError') && UserGiftForm.get('Name').touched && UserGiftForm.get('Id').touched"  class="text-danger">Username Or Name is required</small>
+              <small *ngIf = "(UserGiftForm.get('Id').hasError('minlength') || UserGiftForm.get('Id').hasError('maxlength')) && f['Id'].touched && !UserGiftForm.hasError('hasError')" class="text-danger">User id must be 36 letters long (alphanumeric, including dashes)</small>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-2" align="center">
+            <br><br>
+            <p >OR</p> 
+          </div>
+          <div class="col-md-5 col-sm-5 col-xs-5">
+            <label for="Id">  Name : </label>
+            <input id="Name" type="text" name="Name" formControlName="Name" class="padding form-control" shape="round" [status]="UserGiftForm.hasError('hasError') && UserGiftForm.get('Name').touched && UserGiftForm.get('Id').touched ? 'danger' : 'default'" nbInput fullWidth placeholder="Name">
+          </div>
+        </div>
+        <div class="row" >
+          <div class="col-md-5 col-sm-5 col-xs-5"><hr class="new4"></div>
+          <div class="col-md-2 col-sm-2 col-xs-2" align="center"><h3>Rewards</h3></div>
+          <div class="col-md-5 col-sm-5 col-xs-5"><hr class="new4"></div>
+        </div>
+        
+        <label for="ucoin">  Ucoins : </label>
+        <input type="number" name="ucoin" formControlName="ucoins" class="padding form-control" shape="round" nbInput fullWidth placeholder="UCoins">
+        <label for="dor"> Ballon-Dor : </label>
+        <input type="number" name="dor" formControlName="ballon_dor" class="padding form-control" shape="round" nbInput fullWidth placeholder="Ballon-Dor">                  
+        
+        <h4 class="pd-20">Common cards :-</h4>        
+        <div formArrayName="common" *ngFor="let reward of commonRewards.controls; let i = index">
+          <div [formGroupName]="i">
+            <div class="row pd-20">
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <label for="ucoin">  Chance (1 - 100) ( Card {{i + 1}} ) : </label>
+                <input type="number" class="form-control padding my-1" formControlName="CHANCE" placeholder="Chance">
+              </div>
+              <!-- <div class="col-md-1 col-sm-1 col-xs-1"></div> -->
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <label for="ucoin">  Count(Card {{i + 1}}) : </label>
+                <input type="number" class="form-control padding my-1" formControlName="COUNT" placeholder="Count">
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" nbButton outline fullWidth shape="round" class="pd-20" (click)="addCommonReward()">Add Common card to reward</button>
+        
+        <h4 class="pd-20">Rare cards :-</h4>
+        <div formArrayName="rare" *ngFor="let reward of rareRewards.controls; let j = index">
+          <div [formGroupName]="j">
+            <div class="row pd-20">
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <label for="ucoin">  Chance (1 - 100) ( Card {{j + 1}} ) : </label>
+                <input type="number" class="form-control padding my-1" formControlName="CHANCE" placeholder="Chance">
+              </div>
+              <!-- <div class="col-md-1 col-sm-1 col-xs-1"></div> -->
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <label for="ucoin">  Count ( Card {{j + 1}} ) : </label>
+                <input type="number" class="form-control padding my-1" formControlName="COUNT" placeholder="Count">
+              </div>
+            </div>
+          </div>
+        </div>
+        <button  type="button" nbButton outline fullWidth shape="round" class="pd-20" (click)="addRareReward()">Add Rare card to reward</button>
+        
+        <h4 class="pd-20">Epic cards :-</h4>
+        <div formArrayName="epic" *ngFor="let reward of epicRewards.controls; let k = index">
+          <div [formGroupName]="k">
+            <div class="row pd-20">
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <label for="ucoin">  Chance (1 - 100) ( Card {{k + 1}} ) : </label>
+                <input type="number" class="form-control padding my-1" formControlName="CHANCE" placeholder="Chance">
+              </div>
+              <!-- <div class="col-md-1 col-sm-1 col-xs-1"></div> -->
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <label for="ucoin">  Count ( Card {{k + 1}} ) : </label>
+                <input type="number" class="form-control padding my-1" formControlName="COUNT" placeholder="Count">
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" nbButton outline fullWidth shape="round" class="pd-20" (click)="addEpicReward()">Add Epic card to reward</button>
+        
+        <div class="row pd-20" >
+          <div class="col-md-5 col-sm-5 col-xs-5"><hr class="new4"></div>
+          <div class="col-md-2 col-sm-2 col-xs-2" align="center"><h6>Gift Message</h6></div>
+          <div class="col-md-5 col-sm-5 col-xs-5"><hr class="new4"></div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <label class="padding-top" for="en_title"> English Title : </label> 
+        <input type="text" formControlName="en_title" class=" form-control" shape="round" nbInput fullWidth placeholder="..." [status]="UserGiftForm.get('en_title').touched && UserGiftForm.get('en_title').hasError('required') ? 'danger' : 'default'">
+        <small *ngIf = "UserGiftForm.get('en_title').touched && UserGiftForm.get('en_title').hasError('required')" class="text-danger">Field is required</small> <br>
+
+        <label class="padding-top" for="en_message"> English Message : </label>
+        <textarea type="text" name="en_message" formControlName="en_message"  class="" shape="round" nbInput fullWidth  placeholder="..." [status]="UserGiftForm.get('en_message').touched && UserGiftForm.get('en_message').hasError('required') ? 'danger' : 'default'"></textarea>
+        <small *ngIf = "UserGiftForm.get('en_message').touched && UserGiftForm.get('en_message').hasError('required')" class="text-danger">Field is required</small> <br>
+        
+        <label class="padding-top" for="sp_title"> Spanish Title : </label>
+        <input type="text" name="sp_title" formControlName="sp_title"   class=" form-control" shape="round" nbInput fullWidth placeholder="..." [status]="UserGiftForm.get('sp_title').touched && UserGiftForm.get('sp_title').hasError('required') ? 'danger' : 'default'">
+        <small *ngIf = "UserGiftForm.get('sp_title').touched && UserGiftForm.get('sp_title').hasError('required')" class="text-danger">Field is required</small> <br>
+        
+        <label class="padding-top" for="sp_message"> Spanish Message : </label>
+        <textarea type="text" name="sp_message" formControlName="sp_message"  class="" shape="round" nbInput fullWidth  placeholder="..." [status]="UserGiftForm.get('sp_message').touched && UserGiftForm.get('sp_message').hasError('required') ? 'danger' : 'default'"></textarea>
+        <small *ngIf = "UserGiftForm.get('sp_message').touched && UserGiftForm.get('sp_message').hasError('required')" class="text-danger">Field is required</small> <br>
+        
+        <label class="padding-top" for="fr_title"> French Title : </label>
+        <input type="text" name="fr_title" formControlName="fr_title" class=" form-control" shape="round" nbInput fullWidth placeholder="..." [status]="UserGiftForm.get('fr_title').touched && UserGiftForm.get('fr_title').hasError('required') ? 'danger' : 'default'">
+        <small *ngIf = "UserGiftForm.get('fr_title').touched && UserGiftForm.get('fr_title').hasError('required')" class="text-danger">Field is required</small> <br>
+      
+        <label class="padding-top" for="fr_message"> French Message : </label>
+        <textarea type="text" name="fr_message" formControlName="fr_message"  class="" shape="round" nbInput fullWidth  placeholder="..." [status]="UserGiftForm.get('fr_message').touched && UserGiftForm.get('fr_message').hasError('required') ? 'danger' : 'default'"></textarea>
+        <small *ngIf = "UserGiftForm.get('fr_message').touched && UserGiftForm.get('fr_message').hasError('required')" class="text-danger">Field is required</small> <br>
+        
+        <label class="padding-top" for="dor"> German Title : </label>
+        <input type="text" name="ge_title" formControlName="ge_title" class=" form-control" shape="round" nbInput fullWidth placeholder="..." [status]="UserGiftForm.get('ge_title').touched && UserGiftForm.get('ge_title').hasError('required') ? 'danger' : 'default'">
+        <small *ngIf = "UserGiftForm.get('ge_title').touched && UserGiftForm.get('ge_title').hasError('required')" class="text-danger">Field is required</small> <br>
+        
+        <label class="padding-top" for="ge_message"> German Message : </label>
+        <textarea type="text" name="ge_message" formControlName="ge_message"  class="" shape="round" nbInput fullWidth  placeholder="..." [status]="UserGiftForm.get('ge_message').touched && UserGiftForm.get('ge_message').hasError('required') ? 'danger' : 'default'"></textarea>
+        <small *ngIf = "UserGiftForm.get('ge_message').touched && UserGiftForm.get('ge_message').hasError('required')" class="text-danger">Field is required</small> <br>
+        
+        <label class="padding-top" for="dor"> Itlaian Title : </label>
+        <input type="text" name="it_title" formControlName="it_title" class=" form-control" shape="round" nbInput fullWidth placeholder="..." [status]="UserGiftForm.get('it_title').touched && UserGiftForm.get('it_title').hasError('required') ? 'danger' : 'default'">
+        <small *ngIf = "UserGiftForm.get('it_title').touched && UserGiftForm.get('it_title').hasError('required')" class="text-danger">Field is required</small> <br>
+        
+        <label class="padding-top" for="it_message"> Italian Message : </label>
+        <textarea type="text" name="it_message" formControlName="it_message"  class="" shape="round" nbInput fullWidth  placeholder="..." [status]="UserGiftForm.get('it_message').touched && UserGiftForm.get('it_message').hasError('required') ? 'danger' : 'default'"></textarea>
+        <small *ngIf = "UserGiftForm.get('it_message').touched && UserGiftForm.get('it_message').hasError('required')" class="text-danger">Field is required</small> <br>
+        
+        <button nbButton [disabled]="!UserGiftForm.valid" outline fullWidth shape="round" status="success">Submit!!</button>
+        
+      </form>
+    </div>
+    
+  </div>
+</div>
+
+
+</nb-layout-column>
+</nb-layout>
