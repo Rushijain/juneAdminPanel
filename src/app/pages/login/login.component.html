@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-card-header class="centertext increased_text_size">Login Panel</nb-card-header>
+  <nb-layout center>
+    <nb-layout-column class="colored-column-warning">
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <nb-card>
+          <nb-card-header class="centertext">Administrator Login</nb-card-header>
+          <nb-card-body>
+            <small [class.invalid]="emailId.valid || emailId.untouched">Email required</small>
+            <input type="text" name="emailId" required #emailId="ngModel" class="padding" nbInput fullWidth [(ngModel)] = "id" [status]="emailId.valid || emailId.untouched ? 'info' : 'danger'" placeholder="Email ID"><br>
+
+            <small [class.invalid]="pass.valid || pass.untouched">Password required</small>
+            <input type="password" name="pass" required #pass="ngModel" class="padding" nbInput fullWidth [(ngModel)] = "password" [status]="pass.valid || pass.untouched ? 'info' : 'danger'" placeholder="password"><br>
+          </nb-card-body>
+          <nb-card-footer class="centertext">
+            <button nbButton outline [disabled]="loginForm.form.invalid" status="success">Submit!!</button>
+          </nb-card-footer>
+        </nb-card>
+      </form>
+    </nb-layout-column> 
+  </nb-layout>
+</nb-card>

@@ -13,8 +13,8 @@ import {
 const routes: Routes = [
   {
     path: 'pages',
-    loadChildren: 'app/pages/pages.module#PagesModule',
-    canActivate: [AuthGuard],
+    loadChildren: () => import('app/pages/pages.module')
+      .then(m => m.PagesModule),
   },
   {
     path: 'auth',
@@ -51,7 +51,7 @@ const routes: Routes = [
 ];
 
 const config: ExtraOptions = {
-  useHash: true,
+  useHash: false,
 };
 
 @NgModule({

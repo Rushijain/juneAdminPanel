@@ -2,18 +2,19 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Dashboard',
-    icon: 'nb-home',
-    link: '/pages/dashboard',
+    title: 'Ultras Gifts',
+    icon: 'gift-outline',
+    link: '/pages/ultras-gifts',
+  },
+  {
+    title: 'Tournament',
+    icon: 'award',
+    link: '/pages/tournament',
+  },
+  {
+    title: 'User Ban',
+    icon: 'scissors-outline',
+    link: '/pages/userban',
     home: true,
-  },
-  {
-    title: 'Components',
-    group: true,
-  },
-  {
-    title: 'Items',
-    icon: 'nb-grid-a',
-    link: '/pages/items',
   },
 ];

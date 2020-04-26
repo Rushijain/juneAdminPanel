@@ -1,30 +1,32 @@
+import { UserbanComponent } from './userban/userban.component';
+import { TournamentComponent } from './tournament/tournament.component';
+import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ItemsComponent } from './items/items.component';
+import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { GiftsComponent } from './gifts/gifts.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
-      path: 'dashboard',
-      component: DashboardComponent,
+      path: 'ultras-gifts',
+      component: GiftsComponent,
     },
     {
-      path: '',
-      redirectTo: 'dashboard',
-      pathMatch: 'full',
+      path: 'login',
+      component: LoginComponent,
     },
     {
-      path: 'tables',
-      loadChildren: './tables/tables.module#TablesModule',
+      path: 'tournament',
+      component: TournamentComponent,
     },
     {
-      path: 'items',
-      component: ItemsComponent,
+      path: 'userban',
+      component: UserbanComponent,
     }
   ],
 }];

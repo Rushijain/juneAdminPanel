@@ -1,32 +1,28 @@
+import { LoginModule } from './login/login.module';
 import { NgModule } from '@angular/core';
+import { NbMenuModule } from '@nebular/theme';
 
-import { PagesComponent } from './pages.component';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
+import { PagesComponent } from './pages.component';
+import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
-import { ItemsComponent } from './items/items.component';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { SmartTableService } from '../@core/data/smart-table.service';
-
-const PAGES_COMPONENTS = [
-  PagesComponent,
-];
+import { GiftsModule } from './gifts/gifts.module';
+import { TournamentModule } from './tournament/tournament.module';
+import { UserbanModule } from './userban/userban.module';
 
 @NgModule({
   imports: [
     PagesRoutingModule,
     ThemeModule,
-    DashboardModule,
+    NbMenuModule,
     MiscellaneousModule,
-    Ng2SmartTableModule
+    GiftsModule,
+    LoginModule,
+    TournamentModule,
+    UserbanModule,
   ],
   declarations: [
-    ...PAGES_COMPONENTS,
-    ItemsComponent,
-  ],
-  providers: [
-    SmartTableService,
+    PagesComponent,
   ],
 })
 export class PagesModule {
