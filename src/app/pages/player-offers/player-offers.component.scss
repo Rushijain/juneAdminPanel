@@ -1,0 +1,40 @@
+@import '../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+    .logoutBtn{
+        float: right;
+    }
+
+    .whiteHr {
+        background-color: #e8a7a7 !important;
+    }
+
+    .webshop_image {
+        height: 150px;
+        width: 150px;
+    }
+
+    .webshopImgClass{
+        text-align: center;
+    }
+
+    .cardMainDiv {
+        text-align: center;
+    }
+
+    .buyButton {
+        margin-top: 10px;
+    }
+
+    .centertext
+    {
+      text-align: center;
+    }
+  
+    .increased_text_size
+    {
+        font-size: 40px;
+    }
+}

@@ -1,0 +1,57 @@
+@import '../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+    .whiteHr {
+        background-color: #e8a7a7 !important;
+    }
+
+    .centerText {
+        text-align: center;
+    }
+
+    .cardMainDiv{
+        width: 50% !important;
+    }
+
+    .offerBtns{
+        margin: 10px;
+        width: 40%;
+    }
+
+    .deleteButton {
+        float: right;
+    }
+
+    .cardHeader {
+        text-align: center;
+    }
+
+    .webshop_image {
+        height: 150px;
+        width: 150px;
+    }
+
+    .webshopImgClass{
+        text-align: center;
+    }
+
+    .addAndEditOfferForm{
+        width: 100%;
+    }
+
+    .filterButton{
+        margin-left: 10px;
+    }
+
+    .centertext
+    {
+      text-align: center;
+    }
+  
+    .increased_text_size
+    {
+        font-size: 40px;
+    }    
+}

@@ -1,0 +1,34 @@
+@import '../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+
+    .centertext
+    {
+        text-align: center;
+    }
+
+    .increased_text_size
+    {
+        font-size: 40px;
+    }
+    .webshop_image {
+        height: 120px;
+        width: 120px;
+    }
+
+    .imageBorder {
+        border: yellowgreen;
+        border-style: dashed;
+        padding: 10px;
+    }
+
+    .whiteHr {
+        background-color: #e8a7a7 !important;
+    }
+
+    .imageLabel{
+        margin-right: 10px;
+    }
+}

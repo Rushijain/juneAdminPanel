@@ -1,0 +1,41 @@
+<nb-layout>
+  <nb-layout-column>
+    <div class="container-fluid">
+      <div class="row">          
+        <nb-card fullWidth style="width: 100%;">		
+          <nb-card-header class="centertext increased_text_size">Images</nb-card-header>	
+        </nb-card>
+      </div>
+    </div>
+
+    <hr class="whiteHr">
+
+    <div class="container-fluid">
+      <div class="row">
+        <label class="imageLabel" for="file">Choose Image</label><br><br>
+        <input type="file"
+           id="file"
+           (change)="handleFileInput($event.target.files)"><br><br>
+      </div>
+      <button (click)="uploadImage()" class="btn btn-info">Upload</button><br><br>
+    </div>
+
+    <hr class="whiteHr">
+    
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let image of images; let i = index">
+          <div class="col-xs-4 imageBorder">
+
+            <img class="webshop_image" src="{{image}}"> 
+
+            <button (click) = "copyFunction($event, i)" class="btn btn-info">Copy Link!!</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </nb-layout-column>
+</nb-layout>

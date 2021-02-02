@@ -8,18 +8,23 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Tournament',
-    icon: 'award',
-    link: '/pages/tournament',
-  },
-  {
-    title: 'User Ban',
-    icon: 'scissors-outline',
-    link: '/pages/userban',
-  },
-  {
-    title: 'Give a gift',
+    title: 'AllOffers',
     icon: 'gift-outline',
-    link: '/pages/new-gift',
+    link: '/pages/offers-crud',
+  },
+  {
+    title: 'Image',
+    icon: 'image-outline',
+    link: '/pages/images',
+  },
+  {
+    title: 'Player Offers',
+    icon: 'person-outline',
+    link: '/pages/player-offers',
+  },
+  {
+    title: 'Sort Order',
+    icon: 'list-outline',
+    link: '/pages/sort-order',
   },
 ];

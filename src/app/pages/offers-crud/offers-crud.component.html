@@ -1,0 +1,204 @@
+<nb-layout>
+  <nb-layout-column>
+    <div class="container-fluid">
+      <div class="row">
+        <nb-card fullWidth style="width: 100%;">		
+          <nb-card-header class="centertext increased_text_size">Admin Offers</nb-card-header>	
+        </nb-card>   
+      </div>
+      <div class="row">
+        <button outline nbButton status="info" (click)="viewAddOfferForm()" class="btn">{{addOfferButtonText}}</button>
+      </div>
+    </div>
+
+    <hr class="whiteHr">
+    <div *ngIf="!addFormView">
+      <h4>Filters:</h4>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <label for="id">Id:</label>
+            <input type="text" name="id" #id="ngModel" [(ngModel)]="filterId" class="padding" nbInput fullWidth placeholder="Search for id"><br><br>
+          </div>
+          <div class="col-6">
+            <label for="title">Title:</label>
+            <input type="text" name="title" #title="ngModel" class="padding" [(ngModel)]="filterTitle" nbInput fullWidth placeholder="Search for Title"><br><br>
+          </div>
+          <div class="col-6">
+            <label for="description">Description:</label>
+            <input type="text" name="description" #description="ngModel" class="padding" [(ngModel)]="filterDescription" nbInput fullWidth placeholder="Search for Description"><br><br>
+          </div>
+          <div class="col-6">
+            <label for="target">Target:</label>
+            <input type="text" name="target" #target="ngModel" class="padding" [(ngModel)]="filterTarget" nbInput fullWidth placeholder="Search for Target"><br><br>
+          </div>
+        </div>
+        <div class="row filterDiv">
+          <div>
+            <button class="filterButton" outline nbButton status="info" (click)="filterOffers()">Filter Offers</button>
+            <button class="filterButton" outline nbButton status="danger" (click)="clearFilters()">Clear Filters</button>
+          </div>
+        </div>
+      </div>
+      <hr class="whiteHr">
+    </div>
+    
+
+    <div class="container-fluid" class="offersList" *ngIf="!addFormView">
+      <div class="row">
+        <div class="cardMainDiv" *ngFor="let offer of offers; let i = index;" [hidden]="!offersView[i]">
+          <div class="col-md-12 col-sm-12 col-xs-12" *ngIf="offersView[i]">
+            <nb-card>
+              <nb-card-header class="cardHeader">
+                {{offer.offer_title}}
+            </nb-card-header>
+            <nb-card-body>
+              <p>Id: {{offer.offer_id}}</p>
+              <p>Description: {{offer.offer_description}}</p>
+              <p>Sort order: {{offer.offer_sort_order}}</p>
+              <p>Target: <i> {{offer.target}}</i></p>
+              <div class="webshopImgClass">
+                <img class="webshop_image" src="{{offer.offer_image}}">
+              </div>
+              <!-- Items -->
+              <h5>Items -- </h5>
+              <hr class="whiteHr">
+              <div *ngFor="let item of offer.content; let j = index;">
+                <p>{{j + 1}} - Item id: {{item.item_id}},  Quantity: {{item.quantity}}</p>                
+              </div>
+              <hr class="whiteHr">
+              <!-- Items end -->
+
+              <!-- Price -->
+              <h5>Prices -- </h5>
+              <hr class="whiteHr">
+              <div *ngFor="let price of offer.pricing; let j = index;">
+                <p>Currency: {{price.currency}},  Cost: {{price.cost}}</p>
+              </div>
+              <hr class="whiteHr">
+              <!-- Price end -->
+
+              <!-- Schedule -->
+              <h5>Schedule -- </h5>
+              <hr class="whiteHr">
+              <p> Weekdays -- 
+                <span *ngFor="let weekDay of offer.schedule.days_of_week; let j = index;"> {{weekDay}}</span>
+              </p>
+              <p> Days of month -- 
+                <span *ngFor="let monthDay of offer.schedule.dates_of_month; let j = index;"> {{monthDay}}</span>
+              </p>
+              <p> Months of year -- 
+                <span *ngFor="let month of offer.schedule.months_of_year; let j = index;"> {{month}}</span>
+              </p>
+              <hr class="whiteHr">
+              <!-- Schedule end -->
+
+            </nb-card-body>
+            <nb-card-footer>
+              <button class="offerBtns" outline nbButton status="info" (click)="editOffer(offer)">Edit</button>
+              <button class="offerBtns deleteButtonr" outline nbButton status="danger" (click)="deleteOffer(i)">Delete</button>
+            </nb-card-footer>
+            </nb-card>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="has_more">
+        <button nbButton outline status="info" fullWidth (click)="loadMore()">Load More...</button>
+      </div>
+    </div>
+
+    <div class="container-fluid" class="addOffer" *ngIf="addFormView">
+      <div class="row">
+        <form class="addAndEditOfferForm" [formGroup]="offerForm" (ngSubmit) = "offerUpload()">
+
+          <div class="row">
+            <div class="col-6">
+              <label for="offer_id">Offer Id :</label>
+              <input type="text" [readOnly]="isEdit" name="offer_id" required formControlName="offer_id" class="padding" nbInput fullWidth placeholder="e.g: offer-100"><br><br>
+            </div>
+
+            <div class="col-6">
+              <label for="offer_title">Offer Title :</label>
+              <input type="text" name="offer_title" required formControlName="offer_title" class="padding" nbInput fullWidth placeholder="e.g: Super Saver Pack"><br><br>
+            </div>
+          </div>
+
+          <label for="offer_description">Offer Description :</label>
+              <input type="text" name="offer_description" required formControlName="offer_description" class="padding" nbInput fullWidth placeholder="e.g: Available for the next 10 days"><br><br>
+          
+          <div class="row">
+            <div class="col-6">
+              <label for="offer_sort_order">Offer Sort Order :</label>
+              <input type="number" name="offer_sort_order" required formControlName="offer_sort_order" class="padding" nbInput fullWidth placeholder="e.g: 10"><br><br>
+            </div>
+
+            <div class="col-6">
+              <label for="offer_image">Offer Image :</label>
+              <input type="text" name="offer_image" required formControlName="offer_image" class="padding" nbInput fullWidth placeholder="e.g: assets/images/diwali.png"><br><br>
+            </div>
+          </div>                    
+
+          <div class="row">
+            <div class="col-6">
+              <label for="coinsCost">Cost In Coins :</label>
+              <input type="number" name="coinsCost" required formControlName="coinsCost" class="padding" nbInput fullWidth placeholder="e.g: 10"><br><br>
+            </div>
+
+            <div class="col-6">
+              <label for="gemsCost">Cost In Gems :</label>
+              <input type="number" name="gemsCost" required formControlName="gemsCost" class="padding" nbInput fullWidth placeholder="e.g: 10"><br><br>
+            </div>
+          </div>
+
+          <label for="target">Target :</label><br>
+          <small>* Add operators, keys, conditions with spaces </small><br>
+          <small>* Keys to be used: age, installed_days, coins, gems, game_level </small><br>
+          <small>* Operators to be used: > (greater than), < (less than), >= (greater than equal to), <= (less than equal to), == (equal to)</small><br>
+          <small>* conditional operators to be used: and, or </small><br>
+          <input type="text" name="target" required formControlName="target" class="padding" nbInput fullWidth placeholder="e.g: age < 20 and installed_days > 20"><br><br>
+
+          <hr class="whiteHr">
+          <h4 class="centerText">Schedule</h4>
+          <label for="days_of_week">Days of Week :</label><br>
+          <small>* Add more days by adding commas </small><br>
+          <small>* Range (1 - 7) where 1 = monday</small><br>
+          <input type="text" name="days_of_week" required formControlName="days_of_week" class="padding" nbInput fullWidth placeholder="e.g: 1,2,3..."><br><br>
+
+          <label for="dates_of_month">Days of month :</label><br>
+          <small>* Add more dates by adding commas </small><br>
+          <small>* Range (1 - 31)</small><br>
+          <input type="text" name="dates_of_month" required formControlName="dates_of_month" class="padding" nbInput fullWidth placeholder="e.g: 1,2,3..."><br><br>
+
+          <label for="months_of_year">Months of year :</label><br>
+          <small>* Add more Months by adding commas </small><br>
+          <small>* Range (1 - 12) where 1 = January</small><br>
+          <input type="text" name="months_of_year" required formControlName="months_of_year" class="padding" nbInput fullWidth placeholder="e.g: 1,2..."><br><br>
+          <hr class="whiteHr">
+
+          <h4 class="centerText">Items</h4>
+          <div formArrayName="items" *ngFor="let product of getItems.controls; let i = index">
+            <div [formGroupName]="i">
+
+              <div class="row">
+                <div class="col-6">
+                  <label for="quantity">Quantity</label>
+                  <input type="number" name="quantity" required formControlName="quantity" class="padding" nbInput fullWidth placeholder="e.g: 10"><br><br>
+                </div>              
+              
+                <div class="col-6">
+                  <label for="item_id">Item Id</label>
+                  <input type="text" name="item_id" required formControlName="item_id" class="padding" nbInput fullWidth placeholder="e.g: Item-100"><br><br>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <button type="button" status="danger" nbButton outline fullWidth shape="round" class="pd-20" (click)="removeItemToProducts()" >Remove Last Item</button><br><br>
+          <button type="button" nbButton outline fullWidth shape="round" class="pd-20" (click)="addItemToProducts()">Add Item</button><br><br>
+
+          <button nbButton type="submit" class="btn-block" status="success">Submit!!</button>
+        </form>
+      </div>
+    </div>
+  </nb-layout-column>
+</nb-layout>

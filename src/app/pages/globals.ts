@@ -15,10 +15,7 @@ export class Globals implements OnInit {
   }
 
   ngOnInit() {
-    // const local_storage_url = localStorage.getItem('server');
-    // if (local_storage_url != null) {
-    //   this._url = local_storage_url;
-    // }
+    
   }
   onChangeServer(server: string) {
     // tslint:disable-next-line: triple-equals
@@ -37,91 +34,20 @@ export class Globals implements OnInit {
 
   async login() {
     console.log(localStorage);
-    const email = localStorage.getItem('email');
-    if (email == null) {
-      this.showToast('Logged out', 3000, 'info', 'Redirecting to login page');
-      setTimeout(() => {
-        this.router.navigate(['pages/login']);
-      }, 3000);
-      return false;
+    let player = localStorage.getItem('player');
+    console.log("Player is -- " + player);
+    console.log(player.length);
+    
+    if(player.length > 0) {
+      return true;
     }
-    // tslint:disable-next-line: one-line
     else {
-      this.token = localStorage.getItem('token');
-      console.info(this.token + 'got the token');
-      // tslint:disable-next-line: triple-equals
-      if (this._url != localStorage.getItem('server')) {
-        this.showToast('Logged out', 3000, 'info', 'Redirecting to login page');
-        setTimeout(() => {
-          this.router.navigate(['pages/login']);
-        }, 3000);
-        return false;
-      }
-    }
-    const current_time = new Date().getTime() / 1000;
-    // tslint:disable-next-line: radix
-    console.log(Math.round((current_time - parseInt(localStorage.getItem('time')))));
-    if (localStorage.getItem('time') != null) {
-      // tslint:disable-next-line: radix
-      if (Math.round((current_time - parseInt(localStorage.getItem('time')))) <= 2700) {
-        console.info(this.token + 'got the token');
-        return true;
-      }
-    }
-    const url = this._url + 'account/authenticate/device';
-    const object = {};
-    object['id'] = '01201223124523';
-    // tslint:disable-next-line: no-console
-    // tslint:disable-next-line: no-console
-    // console.log(url);
-
-    let headers = new HttpHeaders();
-    headers  = headers.append('Content-Type', 'application/json');
-    headers  = headers.append('Authorization', 'Basic Z3NnQDEyMyM6');
-
-    let params = new HttpParams();
-    params = params.append('create', 'true');
-    params = params.append('username', 'rushi');
-
-    try {
-      const response = await this._http.post<any>(url, JSON.stringify(object), {headers, params}).toPromise();
-      console.log(response);
-      this.token = response.token;
-      localStorage.setItem('email', this.token);
-      localStorage.setItem('time', (new Date().getTime() / 1000).toString());
-      localStorage.setItem('server', this._url);
-      localStorage.setItem('token', this.token);
-      if (this._url == this.prod_url) {
-        localStorage.setItem('server_name', 'prod');
-      } else if (this._url == this.qa_url) {
-        localStorage.setItem('server_name', 'qa');
-      } else if (this._url == this.local_url) {
-        localStorage.setItem('server_name', 'local');
-      }
-      return response;
-    } catch (e) {
-      console.log('Logged out');
-      this.showToast('Logged out', 3000, 'info', 'Redirecting to login page');
-      setTimeout(() => {
-        this.router.navigate(['pages/login']);
-      }, 3000);
+      this.showToast("Error getting credentials", 5000, "danger", "Routing to login");
+      console.log("rerouting");
+      
+      this.router.navigate(['pages/login']);
       return false;
     }
-    // response.subscribe(
-    //   data => {
-    //     console.log(data.token);
-    //     this.token = data.token;
-    //     return true;
-    //   },
-    //   error => {
-    //     console.log('error occured');
-    //     this.showToast(3000, 'danger', 'Redirecting to login page');
-    //     setTimeout(() => {
-    //       this.router.navigate(['pages/login']);
-    //     }, 3000);
-    //     return false;
-    //   },
-    //   );
   }
 
   showToast(title, duration, status, errmessage: string) {

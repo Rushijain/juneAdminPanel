@@ -1,0 +1,54 @@
+<nb-layout>
+  <nb-layout-column>
+
+    <div class="container-fluid">      
+        <nb-card fullWidth style="width: 100%;">		
+          <nb-card-header class="increased_text_size">
+            <div class="row">
+            <!-- <div class="col-6">              
+            </div> -->
+            <div class="col-12 centertext" >
+              <span class="h2">Player Offers</span>
+              <button class="btn btn-danger logoutBtn" (click)="logoutPlayer()">Logout</button>
+            </div>
+            </div>
+          </nb-card-header>	
+        </nb-card>          
+    </div>    
+
+    <hr class="whiteHr">
+
+    <div class="container-fluid" class="offersList" *ngIf="viewData">
+      <div class="row">
+        <div class="cardMainDiv col-4" *ngFor="let offer of player_offers; let i = index;">          
+            <nb-card>
+              <nb-card-header>{{offer.offer_title}}</nb-card-header>
+
+              <nb-card-body>
+                <div class="webshopImgClass">
+                  <img class="webshop_image" src="{{offer.offer_image}}">
+                </div>
+                <br><p>{{offer.offer_description}}</p>
+                <hr class="whiteHr">
+                <div *ngFor="let item of offer.content; let j = index;">
+                  <p>X{{item.quantity}} {{item.item_id}}</p>                
+                </div>
+                <hr class="whiteHr">
+              </nb-card-body>
+              <nb-card-footer>
+                <button class="buyButton" nbButton *ngFor="let price of offer.pricing; let j = index;" (click)="buyOffer(price.currency, price.cost)" outline fullWidth status="success">
+                  {{price.cost}}  {{price.currency}}
+                </button><br><br>
+              </nb-card-footer>
+            </nb-card>          
+        </div>        
+      </div>
+    </div>
+    <div *ngIf="canLoadMore == true">
+      <button nbButton outline status="info" fullWidth (click)="loadMore()">Load More...</button>
+    </div>
+
+
+
+  </nb-layout-column>
+</nb-layout>

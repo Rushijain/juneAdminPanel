@@ -1,0 +1,34 @@
+<nb-layout>
+  <nb-layout-column>
+
+    <div class="container-fluid">
+      <nb-card fullWidth style="width: 100%;">		
+        <nb-card-header class="increased_text_size">
+          <div class="row">
+          <!-- <div class="col-6">              
+          </div> -->
+          <div class="col-12 centertext">
+            <span class="h2">Change Sort Order</span>
+            <button class="logoutBtn" nbButton outline status="success" (click)="saveSortingOrder()">{{saveOrderButtonText}}</button>
+          </div>
+          </div>
+        </nb-card-header>	
+      </nb-card>     
+    </div>
+
+    <hr class="whiteHr">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let offer of offers" cdkDrag>
+            <nb-card class="sortCard">
+              <nb-card-header><p>{{offer.offer_title}}</p></nb-card-header>
+              <nb-card-body><p>Sort Order - {{offer.offer_sort_order}}</p></nb-card-body>
+            </nb-card>            
+          </div>
+        </div>
+      </div>      
+    </div>
+  </nb-layout-column>
+</nb-layout>

@@ -1,3 +1,4 @@
+import { ImagesComponent } from './images.component';
 import { NgModule } from '@angular/core';
 import {
   NbButtonModule,
@@ -10,10 +11,10 @@ import {
   NbListModule,
   NbInputModule,
   NbLayoutModule,
+  NbCheckboxModule,
 } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
-import { FormsModule } from '@angular/forms';
-import { MessageComponent } from './message.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -28,11 +29,13 @@ import { MessageComponent } from './message.component';
     NbInputModule,
     NbLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
+    NbCheckboxModule,
   ],
   declarations: [
-    MessageComponent,
+    ImagesComponent,
   ],
   providers: [
   ],
 })
-export class MessageModule { }
+export class ImagesModule { }

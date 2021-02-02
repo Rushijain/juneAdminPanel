@@ -21,39 +21,47 @@ export class LoginComponent implements OnInit {
     {path: 'ultras-gifts' , component: GiftsComponent } ];
 
   ngOnInit() {
-
+    const player = localStorage.getItem('player');
+    if(player != null && player != "") {
+      this.router.navigate(['/pages/offers-crud']);
+    }
   }
 
-  onSubmit() {
-    if (this.id == 'admin@gmail.com' && this.password == 'admin@pass123')
-    {
-    this.loginService.Login()
-      .subscribe(
-        data => {
-          this.globals.token = data.token;
-          localStorage.setItem('email', this.globals.token);
-          localStorage.setItem('time', (new Date().getTime() / 1000).toString());
-          localStorage.setItem('server', this.globals._url);
-          localStorage.setItem('token', data.token);
-          if (this.globals._url == this.globals.prod_url) {
-            localStorage.setItem('server_name', 'prod');
-          } else if (this.globals._url == this.globals.qa_url) {
-            localStorage.setItem('server_name', 'qa');
-          } else if (this.globals._url == this.globals.local_url) {
-            localStorage.setItem('server_name', 'local');
-          }
-          console.log(localStorage);
-          let user = { name: 'Ankit', picture: 'assets/images/nick.png'};
-          console.log(this.globals.token);
-          this.userservice.changeUserName();
-          this.router.navigate(['/pages/home']);
-        },
-        error => {
-          this.showToast('Error occured', 0, 'danger', error.error.message);
-        },
-      );
-    } else {
-      this.showToast('Error occured', 1000, 'danger', 'Wrong username and password');
+  onSubmit() {    
+    // this.loginService.Login(this.id, this.password)
+    //   .subscribe(
+    //     data => {
+    //       this.globals.token = data.token;
+    //       localStorage.setItem('email', this.globals.token);
+    //       localStorage.setItem('token', (new Date().getTime() / 1000).toString()); 
+    //       this.router.navigate(['/pages/home']);
+    //     },
+    //     error => {
+    //       this.showToast('Error occured', 0, 'danger', error.error.message);
+    //     },
+    //   );
+    
+    console.log("Inside Login");
+    if(this.id == "june" && this.password == "june") {
+      let player = {
+        player_id: "12345",
+        age: 35,
+        country: "IN",
+        installed_days: 10,
+        coins: 10000,
+        gems: 2,
+        game_level: 10,
+        purchaser: false
+      }
+      localStorage.setItem('player', JSON.stringify(player));
+      localStorage.setItem('id', this.id);
+      this.router.navigate(['/pages/home']);
+    }
+    else if(this.id == "rushi" && this.password == "jain") {
+      this.router.navigate(['/pages/home']);
+    }
+    else {
+      this.showToast('Error occured', 0, 'danger', "Incorrect username or password");
     }
   }
 
