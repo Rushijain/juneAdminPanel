@@ -8,14 +8,6 @@ export class PlayerOffersService {
 
   constructor(private _http: HttpClient, private globals: Globals) { }
 
-  databaseItemsListForDropdown() {
-    let _url = this.globals._url + 'admin-panel/webshop_item_type.php';
-    let headers = new HttpHeaders();
-    let result = this._http.post<any>(_url, "", {headers});
-    console.log(result);
-    return result;
-  }
-
   getOffers(page_number: number) {
       let offers = {          
         "offers" :[
