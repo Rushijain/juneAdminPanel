@@ -34,20 +34,27 @@ export class Globals implements OnInit {
 
   async login() {
     console.log(localStorage);
-    let player = localStorage.getItem('player');
-    console.log("Player is -- " + player);
-    console.log(player.length);
+    let player = localStorage.getItem('player');      
     
-    if(player.length > 0) {
-      return true;
+    if(player != null) {
+      if(player.length > 0) {
+        return true;
+      }
+      else {
+        this.showToast("Error getting credentials", 5000, "danger", "Routing to login");
+        console.log("rerouting");
+        
+        this.router.navigate(['pages/login']);
+        return false;
+      }
     }
     else {
       this.showToast("Error getting credentials", 5000, "danger", "Routing to login");
-      console.log("rerouting");
-      
-      this.router.navigate(['pages/login']);
-      return false;
-    }
+        console.log("rerouting");
+        
+        this.router.navigate(['pages/login']);
+        return false;
+    } 
   }
 
   showToast(title, duration, status, errmessage: string) {

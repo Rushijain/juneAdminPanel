@@ -3,7 +3,6 @@ import { Globals } from './../globals';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
-import { GiftsComponent } from '../gifts/gifts.component';
 import { NbToastrService } from '@nebular/theme';
 
 @Component({
@@ -16,9 +15,7 @@ export class LoginComponent implements OnInit {
   password = '';
   // tslint:disable-next-line: max-line-length
   constructor(private loginService: LoginService, private globals: Globals, private router: Router, private userservice: UserService,
-              private toastrService: NbToastrService) { }
-  routes: Routes = [
-    {path: 'ultras-gifts' , component: GiftsComponent } ];
+              private toastrService: NbToastrService) { }  
 
   ngOnInit() {
     const player = localStorage.getItem('player');

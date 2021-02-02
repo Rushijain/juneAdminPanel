@@ -1,5 +1,5 @@
+import { JuneHomeComponent } from './june-home.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   NbButtonModule,
   NbCardModule,
@@ -14,8 +14,6 @@ import {
 } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
 import { FormsModule } from '@angular/forms';
-import { UserbanComponent } from './userban.component';
-
 
 @NgModule({
   imports: [
@@ -32,9 +30,10 @@ import { UserbanComponent } from './userban.component';
     FormsModule,
   ],
   declarations: [
-    UserbanComponent,
+    JuneHomeComponent,
   ],
   providers: [
-  ],
+  ]
 })
-export class UserbanModule { }
+
+export class JuneHomeModule { }
