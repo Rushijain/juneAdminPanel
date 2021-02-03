@@ -371,7 +371,7 @@ export class OffersCrudComponent implements OnInit {
       target = target.replace(/\installed_days/gi, 10);
       target = target.replace(/\game_level/gi, 10);
       target = target.replace(/\purchaser/gi, true);
-      target = target.replace(/\coins/gi, 10);
+      target = target.replace(/coins/gi, 10);
       target = target.replace(/\gems/gi, 20);
       target = target.replace(/\and/gi, "&&");
       target = target.replace(/\or/gi, "||");

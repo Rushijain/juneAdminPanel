@@ -82,7 +82,7 @@ export class PlayerOffersComponent implements OnInit {
     target = target.replace(/\installed_days/gi, this.player["installed_days"]);
     target = target.replace(/\game_level/gi, this.player["game_level"]);
     target = target.replace(/\purchaser/gi, this.player["purchaser"]);
-    target = target.replace(/\coins/gi, this.player["coins"]);
+    target = target.replace(/coins/gi, this.player["coins"]);
     target = target.replace(/\gems/gi, this.player["gems"]);
     target = target.replace(/\and/gi, "&&");
     target = target.replace(/\or/gi, "||");
